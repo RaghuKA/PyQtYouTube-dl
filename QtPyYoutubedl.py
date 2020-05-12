@@ -1,16 +1,12 @@
 from __future__ import unicode_literals
 import youtube_dl
 import os
-
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
-#from PyQt5_learn_Pyuic5_Edit import Ui_MainWindow
 import sys
 from PyQt5.QtCore import QUrl,QObject,pyqtSlot #, QStringList
 from PyQt5.QtWidgets import QApplication, QFileDialog, QPushButton, QVBoxLayout #, QWidget
-#from gi.overrides.Pango import Layout
 import functools 
 import operator
-
 
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
@@ -46,33 +42,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             my_list = list(f)
         print(my_list)
         ydl_opts = {}
-        
-        # ydl_opts = {
-        # 'download_archive': 'YOUR_PATH_HERE',
-        # 'format': 'bestaudio/best',
-        # 'postprocessors': [{
-        #     'key': 'FFmpegExtractAudio',
-        #     'preferredcodec': 'mp3',
-        #     'preferredquality': '192',
-        #     }],
-        # }
-        # ydl_opts = {
-        #     'format': 'bestaudio/best',  # choice of quality
-        #     'extractaudio': True,        # only keep the audio
-        #     'format': "mkv",        # convert to mp3
-        #     'outtmpl': '%(id)s',         # name the file the ID of the video
-        #     'noplaylist': True,          # only download single song, not playlist
-        #     #'listformats': True,         # print a list of the formats to stdout and exit
-        # }   
-    # ydl_opts = {
-    #     #'download_archive': 'self.download_destination_folder',
-    #     'merge-output-format': 'mp4',
-    #     'postprocessors': [{
-    #         'key': 'FFmpegExtractAudio',
-    #         #'audio-format': 'mp3',
-    #         'preferredquality': '192',
-    #         }],
-    # }
+       
         os.chdir(self.download_destination_folder)
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download(my_list)        

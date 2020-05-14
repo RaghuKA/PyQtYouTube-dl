@@ -6,65 +6,66 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>526</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>16</width>
+    <height>16</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_Browse_for_InputFile">
+   <widget class="QPushButton" name="BrowseInputButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>70</y>
-      <width>131</width>
-      <height>41</height>
+      <x>440</x>
+      <y>110</y>
+      <width>60</width>
+      <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
-     <string>Browse Input File</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_VideoQuality">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>170</y>
-      <width>69</width>
-      <height>22</height>
-     </rect>
+     <string>Browse</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="FilePathField">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>80</y>
-      <width>241</width>
-      <height>21</height>
+      <x>40</x>
+      <y>110</y>
+      <width>391</width>
+      <height>30</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_SelectFile">
+   <widget class="QLabel" name="label_FilePath">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>60</y>
+      <x>40</x>
+      <y>90</y>
       <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Select a file:</string>
+     <string>File Path:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_DownloadOptions">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>140</y>
+      <x>40</x>
+      <y>150</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -73,66 +74,103 @@
      <string>Download options</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_VideoQuality">
+   <widget class="QPushButton" name="BrowseDloaddirButton">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>170</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select Video Quality</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Browse_for_DownloadFolder">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>240</y>
-      <width>181</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Browse for Download location</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
+      <x>440</x>
       <y>250</y>
-      <width>241</width>
-      <height>21</height>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Browse </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="DloadDirPath">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>250</y>
+      <width>391</width>
+      <height>30</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_SelectFile_2">
+   <widget class="QLabel" name="label_DloadDir">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>40</x>
       <y>230</y>
-      <width>141</width>
+      <width>150</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Select Download Folder:</string>
+     <string>Download directory path:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_DownloadVideos">
+   <widget class="QPushButton" name="DloadVidsButton">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>340</y>
-      <width>121</width>
-      <height>31</height>
+      <x>200</x>
+      <y>310</y>
+      <width>110</width>
+      <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>Download Videos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_VideoQuality">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>181</y>
+      <width>134</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Video Quality:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_VideoQuality">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>170</y>
+      <width>78</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Title">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>30</y>
+      <width>320</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Download youtube videos</string>
     </property>
    </widget>
   </widget>
@@ -141,7 +179,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>526</width>
      <height>25</height>
     </rect>
    </property>

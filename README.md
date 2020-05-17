@@ -6,6 +6,4 @@ Gui for downloading youtube videos
 *	Custom selection option for renaming the downloaded videos
 
 
-<div align="center">
-    <img src="/run/media/manjgn_raghu/INTENSO/RaSWPr/NiPyPrj/PyQtYTdlGit/ScShotGui.png" width="400px"</img> 
-</div>
+![Screenshot](ScShotGuiN.png)

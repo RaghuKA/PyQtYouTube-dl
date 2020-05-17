@@ -63,8 +63,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     }
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
+            else:
+                print('The directory does not exist')
         else:
-            print('The directory does not exist')
+            print (' Error! youtube-dl is not installed. Please install the package from http://rg3.github.io/youtube-dl/')
           
 if __name__ == "__main__":
     app = QtWidgets.QApplication (sys.argv)

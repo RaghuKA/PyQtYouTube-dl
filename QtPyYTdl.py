@@ -7,6 +7,7 @@ from PyQt5.QtCore import QUrl,QObject,pyqtSlot
 from PyQt5.QtWidgets import QApplication, QFileDialog, QPushButton, QVBoxLayout
 import functools 
 import operator
+from shutil import which
 
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
@@ -27,6 +28,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
         
+    def checkifinstalled (self):
+    # The file path of the null device.
+        return which("youtube-dl") is not None
+        
     def openFileNameDialog(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")
         self.FilePathField.setText (fileName)
@@ -38,27 +43,28 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dloadDestDir = DloadDir
  
     def DownloadVideos(self):
-        if os.path.isdir(self.dloadDestDir):
-            os.chdir(self.dloadDestDir)
+        if(checkifinstalled () == True):
+            print ('youtube-dl is installed.')
+            if os.path.exists(self.dloadDestDir):
+                os.chdir(self.dloadDestDir)
+                with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'
+                    fh_list = fh.readlines ()
+                
+                for i in range (len (fh_list)):
+                    video_link = fh_list[i].split (',') [0].strip()
+                    custom_name = fh_list[i].split (',') [1].strip()
+                        
+                    ydl_opts = {
+                        'outtmpl': custom_name,
+                        'format': 'webm', 
+                        'keepvideo': True,                   
+                        'audioquality': '1',
+                        'writedescription': True,
+                    }
+                    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                        ydl.download([video_link])
         else:
             print('The directory does not exist')
-
-        with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'
-            fh_list = fh.readlines ()
-        
-        for i in range (len (fh_list)):
-            video_link = fh_list[i].split (',') [0].strip()
-            custom_name = fh_list[i].split (',') [1].strip()
-                  
-            ydl_opts = {
-                'outtmpl': custom_name,
-                'format': 'webm', 
-                'keepvideo': True,                   
-                'audioquality': '1',
-                'writedescription': True,
-            }
-            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([video_link])
           
 if __name__ == "__main__":
     app = QtWidgets.QApplication (sys.argv)

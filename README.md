@@ -10,7 +10,6 @@ Gui for downloading youtube videos
 # Dependencies
 + youtube-dl. Get it here <http://rg3.github.io/youtube-dl/>
 + python 3.0 or higher
-
 ​
 # Getting ydlfromlist
 Clone the repository:

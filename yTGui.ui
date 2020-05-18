@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>447</height>
+    <width>560</width>
+    <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -213,14 +213,24 @@
      <string>Status:</string>
     </property>
    </widget>
+   <widget class="QPlainTextEdit" name="Log">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>440</y>
+      <width>521</width>
+      <height>101</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>531</width>
-     <height>21</height>
+     <width>560</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

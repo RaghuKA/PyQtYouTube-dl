@@ -37,15 +37,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")
         self.FilePathField.setText (fileName)
         self.dloadIpFile = fileName
+        self.Log.insertPlainText('Input file specified as '+ self.dloadIpFile +'\n')
            
     def openFileNameDialog2(self):
         DloadDir = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select directory')
         self.DloadDirPath.setText (DloadDir)
         self.dloadDestDir = DloadDir
+        self.Log.insertPlainText('Download destination directory chosen as '+ self.dloadDestDir +'\n')
  
     def DownloadVideos(self):
         if(is_youtubedl_installed == True):
             self.status_label.setText ("All okay! youtube-dl is installed")
+            self.Log.insertPlainText('youtube-dl is installed check complete\n')
             if os.path.exists(self.dloadDestDir):
                 os.chdir(self.dloadDestDir)
                 with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'

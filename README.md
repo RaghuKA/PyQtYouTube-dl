@@ -2,7 +2,7 @@
 Gui for downloading youtube videos
 
 *	Checks if youtube-dl is installed on machine
-*   
+*   Input and output directories can be browsed using the Gui
 *	Takes input links from a .txt or .csv file
 *	Custom selection option for download directory
 *	Renames the downloaded videos from the custom names specified in the input file

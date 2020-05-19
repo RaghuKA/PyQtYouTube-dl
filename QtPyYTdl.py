@@ -42,7 +42,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.process = QProcess()
         self.connect(self.process, SIGNAL("readyReadStdout()"), self.readOutput)
         self.connect(self.process, SIGNAL("readyReadStderr()"), self.readErrors)
-        ### tarsourcepath="sudo tar xvpf "+ self.path1
+        ###  tarsourcepath="sudo tar xvpf "+ self.path1
         ### self.process.setArguments(QStringList.split(" ",tarsourcepath))
         self.process.start()
                 

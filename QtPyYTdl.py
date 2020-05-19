@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import os
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
 import sys
-from PyQt5.QtCore import QUrl,QObject,pyqtSlot
+from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSlot
 from PyQt5.QtWidgets import QApplication, QFileDialog, QPushButton, QVBoxLayout, QMessageBox
 import functools 
 import operator
@@ -17,6 +17,15 @@ import importlib.util
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
 
+# class MyLogger(object):
+#     def debug(self, msg):
+#         #self.mywindow.Log.insertPlainText(msg)
+#         print(msg)
+#         pass
+
+# def my_hook(d):
+#     if d['status'] == 'finished':
+#         print('Done downloading, now converting ...')
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, dloadIpFile="", dloadDestDir=""):   
         QtWidgets.QMainWindow.__init__(self)
@@ -28,7 +37,15 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
-        
+        # self.msg = msg
+        # self.d = d
+        self.process = QProcess()
+        self.connect(self.process, SIGNAL("readyReadStdout()"), self.readOutput)
+        self.connect(self.process, SIGNAL("readyReadStderr()"), self.readErrors)
+        tarsourcepath="sudo tar xvpf "+ self.path1
+        self.process.setArguments(QStringList.split(" ",tarsourcepath))
+        self.process.start()
+                
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
@@ -44,8 +61,12 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.DloadDirPath.setText (DloadDir)
         self.dloadDestDir = DloadDir
         self.Log.insertPlainText('Download destination directory chosen as '+ self.dloadDestDir +'\n')
- 
+
+#class MyLogger(object):
+
+    
     def DownloadVideos(self):
+        self.Log.insertPlainText(self.process.readStdout())
         if(is_youtubedl_installed == True):
             self.status_label.setText ("All okay! youtube-dl is installed")
             self.Log.insertPlainText('youtube-dl is installed check complete\n')
@@ -64,7 +85,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         'keepvideo': True,                   
                         'audioquality': '1',
                         'writedescription': True,
+                        # 'logger': MyLogger(),
+                        # 'progress_hooks': [my_hook],
                     }
+                    #self.Log.insertPlainText(my_hook)
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
             else:

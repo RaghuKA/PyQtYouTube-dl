@@ -248,7 +248,19 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="HelpMenu">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="HelpMenu"/>
   </widget>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

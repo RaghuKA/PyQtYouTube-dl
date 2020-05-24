@@ -3,7 +3,7 @@ import os
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
 import sys
 from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSlot
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QPushButton, QVBoxLayout, QMessageBox, QToolTip
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,QAction, QPushButton, QVBoxLayout, QMessageBox, QToolTip
 import functools 
 import operator
 from shutil import which
@@ -17,7 +17,7 @@ import importlib.util
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, dloadIpFile="", dloadDestDir=""):   
+    def __init__(self, dloadIpFile="", dloadDestDir="",msg=""):   
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
       
@@ -28,11 +28,28 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
+        self.msg=msg
                       
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
-                
+        
+        self.actionAbout.triggered.connect(self.openAction)
+        
+        
+    def openAction(self):
+        msg = QMessageBox()
+        msg.setText("Test")
+        msg.setWindowTitle("MessageBox demo")
+        #msg.window()
+        #QMessageBox.show(msg)
+        #print("Hello")
+        # msg = QMessageBox()
+
+        # msg.setText("This is a message box")
+        # msg.setWindowTitle("MessageBox demo")
+        #msg.buttonClicked.connect(msgbtn)
+        #pass            
     def openFileNameDialog(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")
         self.FilePathField.setText (fileName)

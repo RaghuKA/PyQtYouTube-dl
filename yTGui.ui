@@ -34,6 +34,15 @@
       <pointsize>10</pointsize>
      </font>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-style:italic; color:#0000ff;&quot;&gt;Browse button for Input file&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
+    </property>
     <property name="text">
      <string>Browse</string>
     </property>
@@ -83,6 +92,9 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-style:italic; color:#0000ff;&quot;&gt;Browse Button for DownloadDir&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>Browse </string>
     </property>
@@ -124,6 +136,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-style:italic; color:#0000ff;&quot;&gt;Click for downloading&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Download Videos</string>

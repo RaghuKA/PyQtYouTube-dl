@@ -17,7 +17,7 @@ import importlib.util
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, dloadIpFile="", dloadDestDir="",msg=""):   
+    def __init__(self, dloadIpFile="", dloadDestDir=""):   
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
       
@@ -28,28 +28,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
-        self.msg=msg
-                      
+                              
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
         
         self.actionAbout.triggered.connect(self.openAction)
-        
-        
+                
     def openAction(self):
-        msg = QMessageBox()
-        msg.setText("Test")
-        msg.setWindowTitle("MessageBox demo")
-        #msg.window()
-        #QMessageBox.show(msg)
-        #print("Hello")
-        # msg = QMessageBox()
-
-        # msg.setText("This is a message box")
-        # msg.setWindowTitle("MessageBox demo")
-        #msg.buttonClicked.connect(msgbtn)
-        #pass            
+        link = "https://github.com/RaghuKA/PyQtYoutube-dl"
+        msg = "<a href='%s'>gitHub</a>" % link +"<br>RaghuKA"+"<br>arkumar38@outlook.com"
+        QMessageBox.about(self, "PyQtYouTube-dl", msg)
+                         
     def openFileNameDialog(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")
         self.FilePathField.setText (fileName)
@@ -93,7 +83,6 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
           
 if __name__ == "__main__":    
     app = QtWidgets.QApplication (sys.argv)
-    
     window = mywindow ()
     window.show ()
     sys.exit (app.exec_())

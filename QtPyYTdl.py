@@ -16,8 +16,19 @@ import importlib.util
 
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
-class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, dloadIpFile="", dloadDestDir=""):   
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("logfile.log", "a")
+    
+    def write(self,message):
+        self.terminal.write(message)
+        self.log.write(message)
+ 
+    def flush(self):
+        pass  
+class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
+    def __init__(self, dloadIpFile="", dloadDestDir=""):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
       
@@ -34,7 +45,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
         
         self.actionAbout.triggered.connect(self.openAction)
-                
+        
     def openAction(self):
         link = "https://github.com/RaghuKA/PyQtYoutube-dl"
         msg = "<a href='%s'>gitHub</a>" % link +"<br>RaghuKA"+"<br>arkumar38@outlook.com"
@@ -60,7 +71,9 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 os.chdir(self.dloadDestDir)
                 with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'
                     fh_list = fh.readlines ()
-                
+                    number_of_links = len(fh_list)
+                    print(number_of_links)
+                                    
                 for i in range (len (fh_list)):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
@@ -72,14 +85,13 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         'audioquality': '1',
                         'writedescription': True,
                     }
-                    
+                    sys.stdout = Logger()
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
             else:
                 print('The directory does not exist')
         else:
             self.status_label.setText ("The package youtube-dl is not installed. Install the package using pip install youtube_dl. Cannot download videos!")
-            
           
 if __name__ == "__main__":    
     app = QtWidgets.QApplication (sys.argv)

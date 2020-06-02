@@ -28,8 +28,9 @@ class Logger(object):
  
     def flush(self):
         pass  
+    
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
-    def __init__(self, dloadIpFile="", dloadDestDir=""):
+    def __init__(self, dloadIpFile="", dloadDestDir="",prc=""):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
       
@@ -40,19 +41,19 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
+        self.prc=prc
                               
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
-        self.DloadVidsButton.clicked.connect(self.startProgress)
         
         self.actionAbout.triggered.connect(self.openAction)
         
-    def startProgress(self):
-        self.completed = 0
-        while self.completed < 100:
-            self.completed += 0.0001
-            self.progBar.setValue(self.completed)
+    def startProgress(self,prc):
+        self.prc = 0
+        for self.prc in range(0,101):
+            self.prc += 0.0001
+            self.progBar.setValue(self.prc)    
         
     def openAction(self):
         link = "https://github.com/RaghuKA/PyQtYoutube-dl"
@@ -96,8 +97,13 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     sys.stdout = Logger()
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
-                    progPc= float(100)/float(number_of_links)
-                    print(progPc)
+                    
+                    prc= float(100/number_of_links)
+                    print(prc)
+                    pc=0
+                    for i in range(0,number_of_links):
+                        pc=pc+prc
+                        self.startProgress(pc)
                 self.Log.insertPlainText('Download finished \n')
             else:
                 print('The directory does not exist')

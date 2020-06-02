@@ -16,6 +16,7 @@ import importlib.util
 
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
+
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
@@ -79,12 +80,12 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                 with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'
                     fh_list = fh.readlines ()
                     number_of_links = len(fh_list)
-                    print(number_of_links)
-                                    
+                    self.Log.insertPlainText('Number of total download links is '+ str(number_of_links) + '\n')
+                                                       
                 for i in range (len (fh_list)):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
-                        
+                    self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')   
                     ydl_opts = {
                         'outtmpl': custom_name,
                         'format': 'webm', 
@@ -95,6 +96,8 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     sys.stdout = Logger()
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
+                    progPc= float(100)/float(number_of_links)
+                    print(progPc)
             else:
                 print('The directory does not exist')
         else:

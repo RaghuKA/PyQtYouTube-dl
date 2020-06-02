@@ -43,8 +43,15 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
+        self.DloadVidsButton.clicked.connect(self.startProgress)
         
         self.actionAbout.triggered.connect(self.openAction)
+        
+    def startProgress(self):
+        self.completed = 0
+        while self.completed < 100:
+            self.completed += 0.0001
+            self.progBar.setValue(self.completed)
         
     def openAction(self):
         link = "https://github.com/RaghuKA/PyQtYoutube-dl"

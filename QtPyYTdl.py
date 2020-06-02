@@ -98,6 +98,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                         ydl.download([video_link])
                     progPc= float(100)/float(number_of_links)
                     print(progPc)
+                self.Log.insertPlainText('Download finished \n')
             else:
                 print('The directory does not exist')
         else:

@@ -48,9 +48,8 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         self.actionAbout.triggered.connect(self.openAction)
            
     def openAction(self):
-        link = "https://github.com/RaghuKA/PyQtYoutube-dl"
-        msg = "<a href='%s'>gitHub</a>" % link +"<br>RaghuKA"+"<br>arkumar38@outlook.com"+"<br>App for downloading multiple youtube videos from a .txt or .csv"
-        QMessageBox.about(self, "PyQtYouTube-dl", msg)
+        msg = "<br>title = 'PyQtYoutube-dl'"+"<br>App for downloading multiple youtube videos from a .txt or .csv"+"<br>author = 'RaghuKA'"+"<br>E-mail = 'arkumar38@outlook.com'"+"<br>gitHub link = <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
+        QMessageBox.about(self, "About PyQtYouTube-dl", msg)
                          
     def openFileNameDialog(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")

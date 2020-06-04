@@ -1,5 +1,12 @@
 ### TODO - Dev
 
+- [x] Gui made compact
+- [x] Tool tips added to the buttons
+- [x] Added about button with display of name, gitHub link and E-mail
 - [ ] Link Progress bar with download function
 - [ ] Write tests
 - [ ] Write more detailed description of the tool in the ReadMe 
+- [ ] Status bar should be deleted
+- [ ] Routing terminal messages to the Log field
+- [ ] Enable and diable widgets on the form while download is occuring
+- 

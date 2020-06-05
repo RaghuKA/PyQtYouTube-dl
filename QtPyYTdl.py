@@ -34,10 +34,13 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         Ui_MainWindow.__init__(self)
       
         self.setupUi(self)
-        self.comboBox_VideoQuality.addItem("First item") #add item
-        self.comboBox_VideoQuality.addItem("Second item")
-        self.comboBox_VideoQuality.addItem("Third item")
-        
+        self.comboBox_VideoQuality.addItem("1080") #add item
+        self.comboBox_VideoQuality.addItem("720")
+        self.comboBox_VideoQuality.addItem("480")
+        self.comboBox_VideoQuality.addItem("360")
+        self.comboBox_VideoQuality.addItem("240")
+        self.comboBox_VideoQuality.addItem("144")
+                
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
                               
@@ -77,9 +80,12 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
                     self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')   
+                    v=self.comboBox_VideoQuality.currentText()
+                    print(v)
                     ydl_opts = {
                         'outtmpl': custom_name,
-                        'format': 'webm', 
+                        'format': 'mp4[height='+v+']+bestaudio/best', 
+                        #'format': 'bestvideo[height<=?'+v+']+bestaudio/best', 
                         'keepvideo': True,                   
                         'audioquality': '1',
                         'writedescription': True,

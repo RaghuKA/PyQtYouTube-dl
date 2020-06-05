@@ -3,7 +3,7 @@ import os
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
 import sys
 from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSlot
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog,QAction, QPushButton, QVBoxLayout, QMessageBox, QToolTip
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QAction, QPushButton, QVBoxLayout, QMessageBox, QToolTip
 import functools 
 import operator
 from shutil import which
@@ -34,12 +34,12 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         Ui_MainWindow.__init__(self)
       
         self.setupUi(self)
-        self.comboBox_VideoQuality.addItem("1080") #add item
-        self.comboBox_VideoQuality.addItem("720")
-        self.comboBox_VideoQuality.addItem("480")
-        self.comboBox_VideoQuality.addItem("360")
-        self.comboBox_VideoQuality.addItem("240")
-        self.comboBox_VideoQuality.addItem("144")
+        self.comBox_VidQual.addItem("1080") #add item
+        self.comBox_VidQual.addItem("720")
+        self.comBox_VidQual.addItem("480")
+        self.comBox_VidQual.addItem("360")
+        self.comBox_VidQual.addItem("240")
+        self.comBox_VidQual.addItem("144")
                 
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
@@ -48,10 +48,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
         
-        self.actionAbout.triggered.connect(self.openAction)
+        self.AboutButton.clicked.connect(self.openAction)
            
     def openAction(self):
-        msg = "<br>title = 'PyQtYoutube-dl'"+"<br>App for downloading multiple youtube videos from a .txt or .csv"+"<br>author = 'RaghuKA'"+"<br>E-mail = 'arkumar38@outlook.com'"+"<br>gitHub link = <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
+        msg = "<br>Gui for youtube videos download"+"<br>author = 'RaghuKA'"+"<br>E-mail = 'arkumar38@outlook.com'"+"<br>gitHub link = <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
         QMessageBox.about(self, "About PyQtYouTube-dl", msg)
                          
     def openFileNameDialog(self):
@@ -85,7 +85,6 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     ydl_opts = {
                         'outtmpl': custom_name,
                         'format': 'mp4[height='+v+']+bestaudio/best', 
-                        #'format': 'bestvideo[height<=?'+v+']+bestaudio/best', 
                         'keepvideo': True,                   
                         'audioquality': '1',
                         'writedescription': True,

@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 import os
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
 import sys
-from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSlot
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QAction, QPushButton, QVBoxLayout, QMessageBox, QToolTip
+from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSignal, pyqtSlot, QThread
+from PyQt5.QtWidgets import QDialog, QMainWindow, QApplication, QFileDialog, QAction, QPushButton, QVBoxLayout, QMessageBox, QToolTip
 import functools 
 import operator
 from shutil import which
@@ -13,10 +13,12 @@ try:
 except ImportError as e:
     is_youtubedl_installed = False
 import importlib.util
+import time
 
 glob_ui_file = "yTGui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(glob_ui_file)
 
+TIME_LIMIT = 100
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
@@ -28,11 +30,26 @@ class Logger(object):
  
     def flush(self):
         pass  
-class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
+    
+class External(QThread):
+    # """
+    # Runs a counter thread.
+    # """
+    countChanged = pyqtSignal(int)
+
+    def run(self):
+        count = 0
+        while count < TIME_LIMIT:
+            count +=1
+            time.sleep(1)
+            self.countChanged.emit(count)
+            
+class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
     def __init__(self, dloadIpFile="", dloadDestDir=""):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
-      
+        self.setFixedSize(300, 400)
+        
         self.setupUi(self)
         self.comBox_VidQual.addItem("1080") #add item
         self.comBox_VidQual.addItem("720")
@@ -47,9 +64,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
         self.DloadVidsButton.clicked.connect(self.DownloadVideos)
+        self.DloadVidsButton.clicked.connect(self.onButtonClick)
         
         self.AboutButton.clicked.connect(self.openAction)
            
+    def onButtonClick(self):
+        self.calc = External()
+        self.calc.countChanged.connect(self.onCountChanged)
+        self.calc.start()
+
+    def onCountChanged(self, value):
+        self.progBar.setValue(value)
+        
     def openAction(self):
         msg = "<br>Gui for youtube videos download"+"<br>author = 'RaghuKA'"+"<br>E-mail = 'arkumar38@outlook.com'"+"<br>gitHub link = <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
         QMessageBox.about(self, "About PyQtYouTube-dl", msg)
@@ -80,7 +106,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
                     self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')   
-                    v=self.comboBox_VideoQuality.currentText()
+                    v=self.comBox_VidQual.currentText()
                     print(v)
                     ydl_opts = {
                         'outtmpl': custom_name,
@@ -98,7 +124,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger):
                     pc=0
                     for i in range(0,number_of_links):
                         pc=pc+prc
-                        self.progBar.setValue(pc)
+                        self.onCountChanged(pc)
                 self.Log.insertPlainText('Download finished \n')
             else:
                 print('The directory does not exist')

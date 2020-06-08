@@ -10,4 +10,5 @@
 - [ ] Routing terminal messages to the Log field
 - [ ] Enable and diable widgets on the form while download is occuring
 - [ ] Add mission statement and icon later in the about message box
+- [ ] Make log field and QlineEdits read only
 - 

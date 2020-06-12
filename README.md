@@ -21,13 +21,15 @@ Clone the repository:
 # Usage
 ​Step 1: Click on the Browse button for File Path. Then browse to the download links input file 
         (.txt or .csv) in  the  Browse input file window and select the input file.
+
 Step 2:	Click on the Browse button for Download Directory Path. Then choose the directory 
         where videos have to be downloaded from the Select directory window.
+		
 Step 3: Click on the Download Videos button
 ​
 # Format of videoslist.txt
 The file has two components - youtube link and desired filename for the video, all separated by commas. An example file would look like:
-​
+
 	https://www.youtube.com/watch?v=17bgzTfibNo, Vid1
 	https://www.youtube.com/watch?v=UPPp8RXXEXY, Vid2
 ​

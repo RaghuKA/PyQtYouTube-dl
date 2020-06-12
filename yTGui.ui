@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>400</width>
     <height>400</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
    <widget class="QPushButton" name="BrowseInputButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>310</x>
       <y>50</y>
       <width>50</width>
       <height>20</height>
@@ -38,7 +38,7 @@
      <bool>false</bool>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-style:italic; color:#0000ff;&quot;&gt;Browse button for Input file&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;Browse button for Input file&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="toolTipDuration">
      <number>-1</number>
@@ -50,9 +50,9 @@
    <widget class="QLineEdit" name="FilePathField">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>50</y>
-      <width>200</width>
+      <width>240</width>
       <height>20</height>
      </rect>
     </property>
@@ -60,7 +60,7 @@
    <widget class="QLabel" name="label_FilePath">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>30</y>
       <width>121</width>
       <height>16</height>
@@ -73,7 +73,7 @@
    <widget class="QLabel" name="label_DownloadOptions">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>80</y>
       <width>121</width>
       <height>16</height>
@@ -86,14 +86,14 @@
    <widget class="QPushButton" name="BrowseDloaddirButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>310</x>
       <y>160</y>
       <width>50</width>
       <height>20</height>
      </rect>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-style:italic; color:#0000ff;&quot;&gt;Browse Button for DownloadDir&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;Browse Button for Download directory&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Browse </string>
@@ -102,9 +102,9 @@
    <widget class="QLineEdit" name="DloadDirPath">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>160</y>
-      <width>200</width>
+      <width>240</width>
       <height>20</height>
      </rect>
     </property>
@@ -112,7 +112,7 @@
    <widget class="QLabel" name="label_DloadDir">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>140</y>
       <width>150</width>
       <height>16</height>
@@ -125,7 +125,7 @@
    <widget class="QPushButton" name="DloadVidsButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>150</x>
       <y>200</y>
       <width>110</width>
       <height>20</height>
@@ -138,7 +138,7 @@
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-style:italic; color:#0000ff;&quot;&gt;Click for downloading&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;Click for downloading&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Download Videos</string>
@@ -147,7 +147,7 @@
    <widget class="QLabel" name="LogHeading">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>260</y>
       <width>61</width>
       <height>16</height>
@@ -166,7 +166,7 @@
    <widget class="QPlainTextEdit" name="Log">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>280</y>
       <width>280</width>
       <height>101</height>
@@ -176,7 +176,7 @@
    <widget class="QProgressBar" name="progBar">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>120</x>
       <y>230</y>
       <width>172</width>
       <height>20</height>
@@ -195,7 +195,7 @@
    <widget class="QPushButton" name="AboutButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>340</x>
       <y>10</y>
       <width>45</width>
       <height>20</height>
@@ -210,7 +210,7 @@
      <bool>false</bool>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-style:italic; color:#0000ff;&quot;&gt;About button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;About button&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="toolTipDuration">
      <number>-1</number>
@@ -219,10 +219,10 @@
      <string>About</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>100</y>
       <width>205</width>
       <height>30</height>
@@ -251,7 +251,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>300</width>
+     <width>400</width>
      <height>25</height>
     </rect>
    </property>

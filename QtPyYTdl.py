@@ -45,21 +45,27 @@ class External(QThread):
             self.countChanged.emit(count)
             
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
-    def __init__(self, dloadIpFile="", dloadDestDir=""):
+    def __init__(self, dloadIpFile="", dloadDestDir="",vid_q=[]):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
-        self.setFixedSize(300, 400)
+        self.setFixedSize(400, 400)
         
         self.setupUi(self)
-        self.comBox_VidQual.addItem("1080") #add item
-        self.comBox_VidQual.addItem("720")
-        self.comBox_VidQual.addItem("480")
-        self.comBox_VidQual.addItem("360")
-        self.comBox_VidQual.addItem("240")
-        self.comBox_VidQual.addItem("144")
+        self.vid_q=[1080,720,480,360,240,144]
+       
+        self.comBox_VidQual.addItem(str(self.vid_q[0])) #add item
+        self.comBox_VidQual.addItem(str(self.vid_q[1]))
+        self.comBox_VidQual.addItem(str(self.vid_q[2]))
+        self.comBox_VidQual.addItem(str(self.vid_q[3]))
+        self.comBox_VidQual.addItem(str(self.vid_q[4]))
+        self.comBox_VidQual.addItem(str(self.vid_q[5]))
                 
         self.dloadIpFile = dloadIpFile
         self.dloadDestDir = dloadDestDir
+        
+        self.FilePathField.setReadOnly(True)
+        self.DloadDirPath.setReadOnly(True)
+        self.Log.setReadOnly(True)
                               
         self.BrowseInputButton.clicked.connect(self.openFileNameDialog)
         self.BrowseDloaddirButton.clicked.connect(self.openFileNameDialog2)
@@ -77,7 +83,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
         self.progBar.setValue(value)
         
     def openAction(self):
-        msg = "<br>Gui for youtube videos download"+"<br>author = 'RaghuKA'"+"<br>E-mail = 'arkumar38@outlook.com'"+"<br>gitHub link = <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
+        msg = "<br>Gui for youtube videos download"+"<br>'RaghuKA'"+"<br>'arkumar38@outlook.com'"+"<br> <a href='%s'>https://github.com/RaghuKA/PyQtYoutube-dl</a>" 
         QMessageBox.about(self, "About PyQtYouTube-dl", msg)
                          
     def openFileNameDialog(self):
@@ -97,24 +103,37 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
             self.Log.insertPlainText('youtube-dl is installed check complete\n')
             if os.path.exists(self.dloadDestDir):
                 os.chdir(self.dloadDestDir)
-                with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'Download_inputs1.txt'
+                with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'videoslist.txt'
                     fh_list = fh.readlines ()
+                    print(fh_list)
+                    while ('\n' in fh_list):
+                        fh_list.remove ('\n')
                     number_of_links = len(fh_list)
                     self.Log.insertPlainText('Number of total download links is '+ str(number_of_links) + '\n')
                                                        
                 for i in range (len (fh_list)):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
-                    self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')   
+                    print(custom_name)
+                    self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')
                     v=self.comBox_VidQual.currentText()
                     print(v)
-                    ydl_opts = {
-                        'outtmpl': custom_name,
-                        'format': 'mp4[height='+v+']+bestaudio/best', 
-                        'keepvideo': True,                   
-                        'audioquality': '1',
-                        'writedescription': True,
-                    }
+                    if not custom_name:
+                        ydl_opts = {
+                            'outtmpl': '%(title)s.%(ext)s',
+                            'format': 'mp4[height='+v+']+bestaudio/best', 
+                            'keepvideo': True,                   
+                            'audioquality': '1',
+                            'writedescription': True,
+                        }
+                    else:
+                        ydl_opts = {
+                            'outtmpl': custom_name,
+                            'format': 'mp4[height='+v+']+bestaudio/best', 
+                            'keepvideo': True,                   
+                            'audioquality': '1',
+                            'writedescription': True,
+                        }
                     sys.stdout = Logger()
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])

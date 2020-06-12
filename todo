@@ -5,10 +5,13 @@
 - [x] Added about button with display of name, gitHub link and E-mail
 - [ ] Link Progress bar with download function
 - [ ] Write tests
-- [ ] Write more detailed description of the tool in the ReadMe 
+- [ ] Write more detailed description of the tool in the ReadMe, Step by step instructions 
 - [ ] Status bar should be deleted
 - [ ] Routing terminal messages to the Log field
 - [ ] Enable and diable widgets on the form while download is occuring
 - [ ] Add mission statement and icon later in the about message box
-- [ ] Make log field and QlineEdits read only
-- 
+- [x] Make log field and QlineEdits read only
+- [ ] Icons for the buttons
+- [ ] Change logs, Create change log function
+- [ ] Change tooltip window background colour to white and text colour to white
+- [ ] Display the terminal promt in the application, Include the date and time of selection of input and download      destination. If destination folder is not chosen, display message user didn't choose a destination folder. Hence,downloading in this particular folder.

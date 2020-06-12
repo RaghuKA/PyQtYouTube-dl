@@ -25,7 +25,7 @@ Step 2:	Click on the Browse button for Download Directory Path. Then choose the 
         where videos have to be downloaded from the Select directory window.
 Step 3: Click on the Download Videos button
 ​
-# Format of Download_inputs1.txt
+# Format of videoslist.txt
 The file has two components - youtube link and desired filename for the video, all separated by commas. An example file would look like:
 ​
 	https://www.youtube.com/watch?v=17bgzTfibNo, Vid1

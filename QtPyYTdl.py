@@ -34,7 +34,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
     def __init__(self, dloadIpFile="", dloadDestDir=""):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
-        self.setFixedSize(400, 400)
+        self.setFixedSize(600, 400)
         
         self.setupUi(self)
                         
@@ -111,5 +111,3 @@ if __name__ == "__main__":
     window = mywindow ()
     window.show ()
     sys.exit (app.exec_())
-        
-            

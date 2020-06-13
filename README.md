@@ -15,8 +15,9 @@ Video multimedia is very powerful. Many users download videos from youtube due t
 Clone the repository:
 	git clone https://github.com/RaghuKA/PyQtYoutube-dl
 
-
-![Screenshot](ScShotGui.png)
+<p align="center">
+  <img src="ScShotGui.png">
+</p>
 
 # Usage
 ​Step 1: Click on the Browse button for File Path. Then browse to the download links input file 

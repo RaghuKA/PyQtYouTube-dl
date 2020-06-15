@@ -36,6 +36,10 @@ Click on the Download Videos button.
   <img src="DloadClick.gif">
 </p>
 
+<p align="center">
+  <img src="GuiAnimation.gif">
+</p>
+
 # Format of videoslist.txt
 The file has two components - youtube link and desired filename for the video, all separated by commas. An example file would look like:
 

@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+import time
 from PyQt5 import QtWidgets, QtCore, QtGui, uic
 import sys
 from PyQt5.QtCore import QObject, QProcess, QUrl, pyqtSignal, pyqtSlot, QThread
@@ -59,17 +60,17 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Browse Input File", "", "Input Files (*.txt *.csv) ")
         self.FilePathField.setText (fileName)
         self.dloadIpFile = fileName
-        self.Log.insertPlainText('Input file specified as '+ self.dloadIpFile +'\n')
+        self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> Input file specified as '+ self.dloadIpFile +'\n')
            
     def openFileNameDialog2(self):
-        DloadDir = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select directory')
+        DloadDir = QtWidgets.QFileDialog.getExistingDirectory(None, 'Select directory')
         self.DloadDirPath.setText (DloadDir)
         self.dloadDestDir = DloadDir
-        self.Log.insertPlainText('Download destination directory chosen as '+ self.dloadDestDir +'\n')
+        self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> Download destination directory chosen as '+ self.dloadDestDir +'\n')
 
     def DownloadVideos(self):
         if(is_youtubedl_installed == True):
-            self.Log.insertPlainText('youtube-dl is installed check complete\n')
+            self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> youtube-dl is installed check complete\n')
             if os.path.exists(self.dloadDestDir):
                 os.chdir(self.dloadDestDir)
                 with open (self.dloadIpFile, 'r') as fh:     #Take test input file as 'videoslist.txt'
@@ -78,13 +79,13 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
                     while ('\n' in fh_list):
                         fh_list.remove ('\n')
                     number_of_links = len(fh_list)
-                    self.Log.insertPlainText('Number of total download links is '+ str(number_of_links) + '\n')
+                    self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> Number of total download links is '+ str(number_of_links) + '\n')
                                                        
                 for i in range (len (fh_list)):
                     video_link = fh_list[i].split (',') [0].strip()
                     custom_name = fh_list[i].split (',') [1].strip()
                     print(custom_name)
-                    self.Log.insertPlainText('Processing download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')
+                    self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> Working on download link ' + str(i+1) +' of total '+ str(number_of_links) + '\n')
                     
                     if not custom_name:
                         ydl_opts = {
@@ -100,11 +101,11 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow,Logger,QDialog):
                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                         ydl.download([video_link])
                     
-                    self.Log.insertPlainText('Download finished \n')
+                self.Log.insertPlainText('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> Download finished \n')
             else:
                 print('The directory does not exist')
         else:
-            self.Log.insertPlainText ("The package youtube-dl is not installed. Install the package using pip install youtube_dl. Cannot download videos!")
+            self.Log.insertPlainText ('<'+time.strftime('%H:%M:%S%p %Z on %b %d, %Y')+'> The package youtube-dl is not installed. Install the package using pip install youtube_dl. Cannot download videos!')
         
 if __name__ == "__main__":    
     app = QtWidgets.QApplication (sys.argv)
